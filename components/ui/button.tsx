@@ -1,0 +1,3 @@
+export function Button({children, onClick, className="", type="button"}: any) {
+  return <button type={type} onClick={onClick} className={`rounded-2xl px-4 py-2 bg-brand-600 hover:bg-brand-700 text-white shadow-soft ${className}`}>{children}</button>;
+}
