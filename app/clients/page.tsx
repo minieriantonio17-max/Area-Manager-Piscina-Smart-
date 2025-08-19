@@ -1,3 +1,4 @@
+import Link from "next/link";
 "use client";
 import { useEffect, useMemo, useState } from "react";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
@@ -20,7 +21,7 @@ export default function ClientsPage(){
     <Card><CardHeader><CardTitle>Elenco clienti</CardTitle></CardHeader><CardContent>
       <div className="overflow-auto"><table className="min-w-full text-sm"><thead className="text-left text-gray-500">
         <tr><th className="py-2 pr-4">Cliente</th><th className="py-2 pr-4">Provincia</th><th className="py-2 pr-4">Telefono</th><th className="py-2 pr-4">2023</th><th className="py-2 pr-4">2024</th><th className="py-2 pr-4">2025</th><th className="py-2 pr-4">Email</th></tr></thead>
-        <tbody>{rows.map((r,i)=>(<tr key={i} className="border-t"><td className="py-2 pr-4">{r.client_name}</td><td className="py-2 pr-4">{r.province||"-"}</td><td className="py-2 pr-4">{r.phone||"-"}</td><td className="py-2 pr-4">{fmtEUR(r.y2023||0)}</td><td className="py-2 pr-4">{fmtEUR(r.y2024||0)}</td><td className="py-2 pr-4">{fmtEUR(r.y2025||0)}</td><td className="py-2 pr-4">{r.email?<a className="link" href={`mailto:${r.email}`}>Invia email</a>:<span className="text-gray-400">N/D</span>}</td></tr>))}</tbody>
+        <tbody>{rows.map((r,i)=>(<tr key={i} className="border-t"><td className="py-2 pr-4">{<Link className="link" href={`/client/${r.client_id}`}>{r.client_name}</Link>}</td><td className="py-2 pr-4">{r.province||"-"}</td><td className="py-2 pr-4">{r.phone||"-"}</td><td className="py-2 pr-4">{fmtEUR(r.y2023||0)}</td><td className="py-2 pr-4">{fmtEUR(r.y2024||0)}</td><td className="py-2 pr-4">{fmtEUR(r.y2025||0)}</td><td className="py-2 pr-4">{r.email?<a className="link" href={`mailto:${r.email}`}>Invia email</a>:<span className="text-gray-400">N/D</span>}</td></tr>))}</tbody>
       </table></div>
     </CardContent></Card>
   </div>);
